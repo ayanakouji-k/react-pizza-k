@@ -1,0 +1,35 @@
+.cart {
+  &__items {
+    height: 330px;
+    overflow: auto;
+    padding: 5px 10px 5px 5px;
+    &::-webkit-scrollbar {
+      width: 6px;
+      background-color: #fff;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #ed6c02;
+      border-radius: 10px;
+    }
+  }
+  &__item {
+    gap: 20px;
+    border-top: 1px solid #f4f4f4;
+    padding: 5px 0;
+    img {
+      max-width: 100px;
+    }
+    h3 {
+      font-size: 20px;
+    }
+  }
+  &__info {
+    width: 220px;
+  }
+  &__full {
+    font-size: 22px;
+    &-orange {
+      color: #fe5f1e;
+    }
+  }
+}

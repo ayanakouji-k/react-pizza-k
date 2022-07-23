@@ -1,0 +1,23 @@
+// Обнуление __ start ==========================================================
+@import './null';
+// Обнуление __ end ============================================================
+// Mixins __ start =============================================================
+@import './breakpoints';
+// Mixins __ end ===============================================================
+
+.app {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 120px;
+}
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  @include breakpoint(lg) {
+    max-width: 860px;
+  }
+}
