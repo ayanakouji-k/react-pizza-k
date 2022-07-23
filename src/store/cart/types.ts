@@ -1,5 +1,6 @@
 export type TCartObj = {
   id: string;
+  uniqueId: number;
   img: string;
   name: string;
   size: number;

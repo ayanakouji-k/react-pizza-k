@@ -7,14 +7,12 @@ import { useAppDispatch } from '../../../store';
 import { selectModal } from '../../../store/modal/selectors';
 import { getModalId, getPizzaModalThunk, setModalShow } from '../../../store/modal/slice';
 import { setCartPizza } from '../../../store/cart/slice';
-import { selectCart } from '../../../store/cart/selectors';
 
 import './pizza-modal.scss';
 
 const PizzaModal: React.FC = () => {
   const dispatch = useAppDispatch();
   const { modalPizzas, modalId, modalShow } = useSelector(selectModal);
-  const { cartPizzas } = useSelector(selectCart);
 
   const [indexSize, setIndexSize] = React.useState(1);
   const [indexType, setIndexType] = React.useState(0);
@@ -36,6 +34,7 @@ const PizzaModal: React.FC = () => {
     if (modalPizzas) {
       const newPizzaObj = {
         id: modalId,
+        uniqueId: Date.now(),
         img: modalPizzas.imageUrl,
         name: modalPizzas.name,
         size: modalPizzas.sizes[indexSize].size,
@@ -95,6 +94,7 @@ const PizzaModal: React.FC = () => {
                     <Stack direction="row">
                       {modalPizzas.sizes.map((prev, i) => (
                         <Button
+                          key={prev.id}
                           className="flex"
                           onClick={() => handelIndexSize(i)}
                           variant={indexSize === i ? 'contained' : 'text'}
@@ -106,6 +106,7 @@ const PizzaModal: React.FC = () => {
                     <Stack direction="row">
                       {modalPizzas.sizes[indexSize].type.map((prev, i) => (
                         <Button
+                          key={prev.id}
                           className="flex"
                           onClick={() => handleIndexType(i)}
                           disabled={!prev.isShow}

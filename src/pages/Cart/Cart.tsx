@@ -53,7 +53,7 @@ const Cart: React.FC = () => {
           </div>
           <ul className="cart__items mb-30">
             {cartPizzas.map((item) => (
-              <li key={item.id} className="cart__item d-flex align-center justify-between">
+              <li key={item.uniqueId} className="cart__item d-flex align-center justify-between">
                 <div className="d-flex align-center">
                   <img className="mr-15" src={item.img} alt={item.name} />
                   <div className="cart__info">
@@ -65,24 +65,26 @@ const Cart: React.FC = () => {
                 </div>
                 <Stack direction="row" spacing={1} className="d-flex align-center">
                   <IconButton
-                    onClick={() => dispatch(addCartPizza(item.id))}
-                    aria-label="plus"
-                    color="warning">
-                    <AddCircle fontSize="large" />
-                  </IconButton>
-                  <h2 className="pl-5 pr-5">{item.count}</h2>
-                  <IconButton
-                    onClick={() => dispatch(minusCartPizza(item.id))}
+                    onClick={() => dispatch(minusCartPizza(item.uniqueId))}
                     aria-label="minus"
                     disabled={item.count === 1}
                     color="warning">
                     <RemoveCircle fontSize="large" />
                   </IconButton>
+                  <h2 className="pl-5 pr-5">{item.count}</h2>
+                  <IconButton
+                    onClick={() => dispatch(addCartPizza(item.uniqueId))}
+                    aria-label="plus"
+                    color="warning">
+                    <AddCircle fontSize="large" />
+                  </IconButton>
                 </Stack>
                 <h3 className="d-flex align-center">
                   {item.price * item.count} <CurrencyRuble />
                 </h3>
-                <IconButton onClick={() => dispatch(removeCartPizza(item.id))} aria-label="delete">
+                <IconButton
+                  onClick={() => dispatch(removeCartPizza(item.uniqueId))}
+                  aria-label="delete">
                   <HighlightOff fontSize="large" />
                 </IconButton>
               </li>
