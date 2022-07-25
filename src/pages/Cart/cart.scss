@@ -1,5 +1,6 @@
 @import '../../styles/mixin';
 .cart {
+  height: 90vh;
   h1 {
     @include adaptiv-font(32, 22, 32);
   }

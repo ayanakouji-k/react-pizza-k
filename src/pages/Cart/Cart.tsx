@@ -38,7 +38,7 @@ const Cart: React.FC = () => {
   return (
     <div>
       {cartPizzas.length > 0 ? (
-        <div className="cart">
+        <div className="cart d-flex flex-column">
           <div className="d-flex justify-between align-center mb-30">
             <h1 className="d-flex align-center">
               <ShoppingCartOutlined /> Корзина
@@ -47,7 +47,7 @@ const Cart: React.FC = () => {
               Очистить корзину
             </Button>
           </div>
-          <ul className="cart__items mb-30">
+          <ul className="cart__items mb-30 flex">
             {cartPizzas.map((item) => (
               <li key={item.uniqueId} className="cart__item d-flex align-center justify-between">
                 <div className="d-flex align-center">

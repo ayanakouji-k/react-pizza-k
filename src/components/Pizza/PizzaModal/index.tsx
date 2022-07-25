@@ -80,7 +80,7 @@ const PizzaModal: React.FC = () => {
           }}>
           <Fade in={modalShow}>
             <div className="pizza-modal__body">
-              <div className="pizza-modal__body-relative d-flex p-10">
+              <div className="pizza-modal__body-relative d-flex">
                 <IconButton
                   onClick={handleClose}
                   aria-label="cancel"
