@@ -2,8 +2,7 @@
 @import '../../styles/breakpoints';
 .favorite {
   h1 {
-    font-size: 30px;
-    @include adaptiv-font(30, 14, 30);
+    @include adaptiv-font(32, 22, 32);
   }
   span {
     font-size: 14px;

@@ -13,7 +13,7 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const changeBackground = () => (window.scrollY >= 80 ? setNavbar(true) : setNavbar(false));
+  const changeBackground = () => (window.scrollY >= 30 ? setNavbar(true) : setNavbar(false));
   React.useEffect(() => window.addEventListener('scroll', changeBackground), []);
   return (
     <header className={`header ${navbar && 'active'}`}>
@@ -24,9 +24,9 @@ const Header: React.FC = () => {
               className="header__logo d-flex align-center mr-15 cu-p"
               onClick={() => navigate('')}>
               <img width={38} height={38} src={headerLogoIco} alt="logo" />
-              <div>
+              <div className="header__logo-text">
                 <h2>REACT&nbsp;PIZZA</h2>
-                <p>Есть то, что нас объединяет</p>
+                <p>Есть&nbsp;то,&nbsp;что&nbsp;нас&nbsp;объединяет</p>
               </div>
             </div>
             {pathname !== '/cart' && pathname !== '/favorite' && <Search />}

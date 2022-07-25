@@ -22,25 +22,20 @@ const Category: React.FC = React.memo(() => {
     (type: string) => dispatch(setFilterCategory(type)),
     [],
   );
+  const categoryIsDesktop = category.map((item) => (
+    <ThemeProvider theme={item.type === categoryType ? dark : grey} key={item.id}>
+      <Button
+        color="neutral"
+        variant="contained"
+        className="row__btn"
+        onClick={() => onClickCategory(item.type)}>
+        {item.name}
+      </Button>
+    </ThemeProvider>
+  ));
   return (
     <div className="category">
-      <Stack spacing={1} direction="row">
-        {status === 'loading' ? (
-          <CategorySkeleton />
-        ) : (
-          category.map((item) => (
-            <ThemeProvider theme={item.type === categoryType ? dark : grey} key={item.id}>
-              <Button
-                color="neutral"
-                variant="contained"
-                className="row__btn"
-                onClick={() => onClickCategory(item.type)}>
-                {item.name}
-              </Button>
-            </ThemeProvider>
-          ))
-        )}
-      </Stack>
+      <div className="row">{status === 'loading' ? <CategorySkeleton /> : categoryIsDesktop}</div>
     </div>
   );
 });

@@ -10,7 +10,10 @@
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  padding-top: 120px;
+  padding-top: 112px;
+  @include breakpoint(xs) {
+    padding-top: 90px;
+  }
 }
 .container {
   max-width: 1200px;

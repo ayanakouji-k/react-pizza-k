@@ -29,8 +29,8 @@ const Favorite: React.FC = () => {
         <div className="favorite">
           <div className="d-flex align-center justify-between">
             <div className="d-flex align-center">
-              <h1 className="mr-15">
-                <BookmarkBorderOutlined /> Все закладки
+              <h1 className="d-flex align-center mr-15">
+                <BookmarkBorderOutlined /> Закладка
               </h1>
               <Button
                 onClick={() => navigate('/')}
@@ -40,11 +40,7 @@ const Favorite: React.FC = () => {
                 <ArrowBack className="favorite__btn-ico" />
               </Button>
             </div>
-            <Button
-              onClick={onClearFavorite}
-              color="warning"
-              variant="outlined"
-              startIcon={<DeleteSweepOutlined />}>
+            <Button onClick={onClearFavorite} color="warning" startIcon={<DeleteSweepOutlined />}>
               Очистить закладку
             </Button>
           </div>

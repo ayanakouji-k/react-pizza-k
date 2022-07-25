@@ -34,7 +34,6 @@ const SearchC: React.FC = React.memo(() => {
       <Search className="mr-5" color="disabled" fontSize="medium" />
       <input
         ref={inputRef}
-        className="w100p"
         type="text"
         value={inputValue}
         onChange={(e) => onChangeCategory(e)}

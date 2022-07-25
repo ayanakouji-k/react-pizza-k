@@ -1,4 +1,5 @@
 @import '../../styles/mixin';
+@import '../../styles/breakpoints';
 .header {
   position: fixed;
   top: 0;
@@ -6,7 +7,7 @@
   right: 0;
   width: 100%;
   padding: 25px 0;
-  border-bottom: 1px solid #f6f6f6;
+  border-bottom: 1px solid rgb(221, 218, 218);
   background-color: #fff;
   transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
   &.active {
@@ -39,6 +40,11 @@
       font-size: 12px;
       @include adaptiv-font(12, 10, 12);
       transition: color 0.3s ease-in-out;
+    }
+  }
+  &__logo-text {
+    @include breakpoint(sm) {
+      display: none;
     }
   }
 }

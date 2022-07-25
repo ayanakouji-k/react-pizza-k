@@ -40,14 +40,10 @@ const Cart: React.FC = () => {
       {cartPizzas.length > 0 ? (
         <div className="cart">
           <div className="d-flex justify-between align-center mb-30">
-            <h1>
+            <h1 className="d-flex align-center">
               <ShoppingCartOutlined /> Корзина
             </h1>
-            <Button
-              onClick={onClearCart}
-              color="warning"
-              variant="outlined"
-              startIcon={<DeleteSweepOutlined />}>
+            <Button onClick={onClearCart} color="warning" startIcon={<DeleteSweepOutlined />}>
               Очистить корзину
             </Button>
           </div>

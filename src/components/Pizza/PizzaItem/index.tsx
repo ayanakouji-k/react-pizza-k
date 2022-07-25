@@ -13,13 +13,16 @@ import { useAppDispatch } from '../../../store';
 import { removeFavorite, setAddFavorite } from '../../../store/favorite/slice';
 import { getModalId, setModalShow } from '../../../store/modal/slice';
 import { selectFavorite } from '../../../store/favorite/selectors';
+import { selectPizza } from '../../../store/pizza/selectors';
 import { TPizzaObj } from '../../../store/pizza/types';
 
+import pizzaLoading from '../../../assets/img/pizza-loading.svg';
 import './pizza-item.scss';
 
 const PizzaItem: React.FC<TPizzaObj> = (pizza) => {
   const dispatch = useAppDispatch();
   const { items } = useSelector(selectFavorite);
+  const { status } = useSelector(selectPizza);
 
   const { id, imageUrl, name, price, delivery } = pizza;
   const activeFav = items.find((prev) => prev.id === id);
@@ -40,7 +43,7 @@ const PizzaItem: React.FC<TPizzaObj> = (pizza) => {
   };
   return (
     <div className="pizza-item text-center cu-p">
-      <img src={imageUrl} alt={name} />
+      <img src={status === 'loading' ? pizzaLoading : imageUrl} alt={name} />
       <h2 className="mb-15">{name}</h2>
       <div className="d-flex align-center justify-around pb-10">
         <span className="pizza-item__bottom d-flex align-center">

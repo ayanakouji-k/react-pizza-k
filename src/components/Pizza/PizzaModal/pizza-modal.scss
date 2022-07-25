@@ -1,7 +1,12 @@
+@import '../../../styles/breakpoints';
 .pizza-modal {
-  overflow: auto;
+  overflow: hidden;
   &__img {
     max-width: 100%;
+    @include breakpoint(md) {
+      width: 350px !important;
+      max-width: none !important;
+    }
     &-medium {
       width: 250px;
     }
@@ -22,7 +27,23 @@
     transform: translate(-50%, -50%);
     border-radius: 30px;
     background-color: #fff;
-    overflow: hidden;
+    overflow: auto;
+    @include breakpoint(md) {
+      height: 700px;
+    }
+    &-relative {
+      position: relative;
+      @include breakpoint(md) {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+    &-cancel {
+      position: absolute !important;
+      top: 10px;
+      right: 10px;
+    }
     &-inner {
       width: 350px;
       height: 350px;
@@ -32,6 +53,12 @@
     }
     &-img {
       width: 50%;
+      @include breakpoint(md) {
+        width: 70%;
+      }
+      @include breakpoint(xs) {
+        width: 90%;
+      }
       img {
         padding: 20px;
         transition: all 0.5s ease-in-out;
@@ -45,6 +72,13 @@
       width: 50%;
       background-color: #fcfcfc;
       padding: 30px 20px;
+      @include breakpoint(md) {
+        width: 70%;
+        gap: 15px;
+      }
+      @include breakpoint(xs) {
+        width: 90%;
+      }
       h2 {
         font-size: 30px;
         font-weight: 500;

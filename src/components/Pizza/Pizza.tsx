@@ -6,6 +6,7 @@ import { selectPizza } from '../../store/pizza/selectors';
 
 import './pizza.scss';
 import PizzaSkeleton from './PizzaSkeleton';
+import Sort from '../Sort/Sort';
 
 const Pizza: React.FC = () => {
   const { items, status } = useSelector(selectPizza);
@@ -13,6 +14,9 @@ const Pizza: React.FC = () => {
     <div className="pizza">
       <div className="d-flex align-center justify-between mb-20">
         <h1>Все пиццы</h1>
+        <div className="pizza__sort">
+          <Sort />
+        </div>
       </div>
       <div className="pizza__items">
         {status === 'loading'
