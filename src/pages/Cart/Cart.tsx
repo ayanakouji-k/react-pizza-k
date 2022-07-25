@@ -1,4 +1,5 @@
 import React from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Stack, IconButton, Button } from '@mui/material';
@@ -29,6 +30,8 @@ const Cart: React.FC = () => {
   const { cartPizzas, totalCount, totalPrice } = useSelector(selectCart);
   const navigate = useNavigate();
 
+  const cartMobileShow = useMediaQuery({ query: '(max-width: 680px)' });
+
   const onClearCart = () => {
     if (window.confirm('Вы дейтвительно хотите очистить корзину!')) {
       dispatch(clearCartPizza());
@@ -49,41 +52,87 @@ const Cart: React.FC = () => {
           </div>
           <ul className="cart__items mb-30 flex">
             {cartPizzas.map((item) => (
-              <li key={item.uniqueId} className="cart__item d-flex align-center justify-between">
-                <div className="d-flex align-center">
-                  <img className="mr-15" src={item.img} alt={item.name} />
-                  <div className="cart__info">
-                    <h3 className="mb-5">{item.name}</h3>
-                    <p className="opacity-5">
-                      {item.type} тесто, {item.size} см.
-                    </p>
-                  </div>
-                </div>
-                <Stack direction="row" spacing={1} className="d-flex align-center">
-                  <IconButton
-                    onClick={() => dispatch(minusCartPizza(item.uniqueId))}
-                    aria-label="minus"
-                    disabled={item.count === 1}
-                    color="warning">
-                    <RemoveCircle fontSize="large" />
-                  </IconButton>
-                  <h2 className="pl-5 pr-5">{item.count}</h2>
-                  <IconButton
-                    onClick={() => dispatch(addCartPizza(item.uniqueId))}
-                    aria-label="plus"
-                    color="warning">
-                    <AddCircle fontSize="large" />
-                  </IconButton>
-                </Stack>
-                <h3 className="d-flex align-center">
-                  {item.price * item.count} <CurrencyRuble />
-                </h3>
-                <IconButton
-                  onClick={() => dispatch(removeCartPizza(item.uniqueId))}
-                  aria-label="delete">
-                  <HighlightOff fontSize="large" />
-                </IconButton>
-              </li>
+              <div>
+                {cartMobileShow ? (
+                  <li key={item.uniqueId} className="cart__item d-flex flex-column">
+                    <div className="d-flex align-center justify-between">
+                      <div className="d-flex align-center">
+                        <img className="mr-15" src={item.img} alt={item.name} />
+                        <div className="cart__info">
+                          <h3 className="mb-5">{item.name}</h3>
+                          <p className="opacity-5">
+                            {item.type} тесто, {item.size} см.
+                          </p>
+                        </div>
+                      </div>
+                      <IconButton
+                        onClick={() => dispatch(removeCartPizza(item.uniqueId))}
+                        aria-label="delete">
+                        <HighlightOff fontSize="large" />
+                      </IconButton>
+                    </div>
+                    <div className="d-flex align-center justify-around">
+                      <h3 className="d-flex align-center">
+                        {item.price * item.count} <CurrencyRuble />
+                      </h3>
+                      <Stack direction="row" spacing={1} className="d-flex align-center">
+                        <IconButton
+                          onClick={() => dispatch(minusCartPizza(item.uniqueId))}
+                          aria-label="minus"
+                          disabled={item.count === 1}
+                          color="warning">
+                          <RemoveCircle fontSize="large" />
+                        </IconButton>
+                        <h2 className="pl-5 pr-5">{item.count}</h2>
+                        <IconButton
+                          onClick={() => dispatch(addCartPizza(item.uniqueId))}
+                          aria-label="plus"
+                          color="warning">
+                          <AddCircle fontSize="large" />
+                        </IconButton>
+                      </Stack>
+                    </div>
+                  </li>
+                ) : (
+                  <li
+                    key={item.uniqueId}
+                    className="cart__item d-flex align-center justify-between">
+                    <div className="d-flex align-center">
+                      <img className="mr-15" src={item.img} alt={item.name} />
+                      <div className="cart__info">
+                        <h3 className="mb-5">{item.name}</h3>
+                        <p className="opacity-5">
+                          {item.type} тесто, {item.size} см.
+                        </p>
+                      </div>
+                    </div>
+                    <Stack direction="row" spacing={1} className="d-flex align-center">
+                      <IconButton
+                        onClick={() => dispatch(minusCartPizza(item.uniqueId))}
+                        aria-label="minus"
+                        disabled={item.count === 1}
+                        color="warning">
+                        <RemoveCircle fontSize="large" />
+                      </IconButton>
+                      <h2 className="pl-5 pr-5">{item.count}</h2>
+                      <IconButton
+                        onClick={() => dispatch(addCartPizza(item.uniqueId))}
+                        aria-label="plus"
+                        color="warning">
+                        <AddCircle fontSize="large" />
+                      </IconButton>
+                    </Stack>
+                    <h3 className="d-flex align-center">
+                      {item.price * item.count} <CurrencyRuble />
+                    </h3>
+                    <IconButton
+                      onClick={() => dispatch(removeCartPizza(item.uniqueId))}
+                      aria-label="delete">
+                      <HighlightOff fontSize="large" />
+                    </IconButton>
+                  </li>
+                )}
+              </div>
             ))}
           </ul>
           <div className="d-flex align-center justify-between mb-15">
