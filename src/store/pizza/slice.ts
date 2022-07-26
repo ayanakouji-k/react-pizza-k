@@ -11,9 +11,8 @@ export const getPizzaThunk = createAsyncThunk<TPizzaObj[], IFilterState>(
     const category = categoryType === 'all' ? '' : `category=${categoryType}`;
     try {
       const res = await api.get(
-        `pizzas?_limit=4&_page=${pageCount}&q=${searchValue}&${category}&_sort=${sort.sortType}&_order=${sort.sortOrder}`,
+        `pizzas?l=4&p=${pageCount}&search=${searchValue}&${category}&sortBy=${sort.sortType}&order=${sort.sortOrder}`,
       );
-      dispatch(setTotalCount(res.headers['x-total-count']));
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.message);
@@ -23,18 +22,13 @@ export const getPizzaThunk = createAsyncThunk<TPizzaObj[], IFilterState>(
 
 const initialState: IPizza = {
   items: [],
-  totalCount: '',
   status: Status.LOADING,
 };
 
 const pizzaSlice = createSlice({
   name: 'pizza',
   initialState,
-  reducers: {
-    setTotalCount(state, { payload }: PayloadAction<string>) {
-      state.totalCount = payload;
-    },
-  },
+  reducers: {},
   extraReducers(builder) {
     builder.addCase(getPizzaThunk.pending, (state) => {
       state.status = Status.LOADING;
@@ -50,5 +44,4 @@ const pizzaSlice = createSlice({
     });
   },
 });
-export const { setTotalCount } = pizzaSlice.actions;
 export default pizzaSlice.reducer;

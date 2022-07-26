@@ -11,7 +11,7 @@
     overflow-x: hidden;
     padding: 5px 10px 5px 5px;
     &::-webkit-scrollbar {
-      width: 6px;
+      width: 2px;
       height: 2px;
       background-color: #fff;
     }
@@ -43,5 +43,9 @@
     &-orange {
       color: #fe5f1e;
     }
+  }
+  &__mobile-border {
+    border: 1px solid #fe5f1e;
+    border-radius: 10px;
   }
 }

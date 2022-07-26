@@ -28,6 +28,5 @@ export enum Status {
 }
 export interface IPizza {
   items: TPizzaObj[];
-  totalCount: string;
   status: Status;
 }

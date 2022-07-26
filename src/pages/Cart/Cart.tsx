@@ -71,7 +71,7 @@ const Cart: React.FC = () => {
                         <HighlightOff fontSize="large" />
                       </IconButton>
                     </div>
-                    <div className="d-flex align-center justify-around">
+                    <div className="cart__mobile-border d-flex align-center justify-around">
                       <h3 className="d-flex align-center">
                         {item.price * item.count} <CurrencyRuble />
                       </h3>
