@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 import Search from '../Search/SearchC';
 import HeaderStack from './HeaderStack';
@@ -12,6 +13,8 @@ const Header: React.FC = () => {
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
+  const headerSearchMobile = useMediaQuery({ query: '(max-width: 576px)' });
 
   const changeBackground = () => (window.scrollY >= 30 ? setNavbar(true) : setNavbar(false));
   React.useEffect(() => window.addEventListener('scroll', changeBackground), []);
@@ -29,8 +32,9 @@ const Header: React.FC = () => {
                 <p>Есть&nbsp;то,&nbsp;что&nbsp;нас&nbsp;объединяет</p>
               </div>
             </div>
-            {pathname !== '/cart' && pathname !== '/favorite' && <Search />}
+            {pathname !== '/cart' && pathname !== '/favorite' && !headerSearchMobile && <Search />}
           </div>
+          {headerSearchMobile && <Search />}
           <HeaderStack navbar={navbar} />
         </div>
       </div>
