@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-pizza-k/static/css/main.1d9008ae.css",
-    "main.js": "/react-pizza-k/static/js/main.ca4e370f.js",
+    "main.js": "/react-pizza-k/static/js/main.19be6670.js",
     "static/media/not-pizza.png": "/react-pizza-k/static/media/not-pizza.5780490d332c0e83fbaf.png",
     "static/media/pizza-logo.png": "/react-pizza-k/static/media/pizza-logo.26575d05c10514ee9dc9.png",
     "static/media/empty-cart.png": "/react-pizza-k/static/media/empty-cart.db905d1f4b063162f25b.png",
@@ -9,10 +9,10 @@
     "static/media/pizza-loading.svg": "/react-pizza-k/static/media/pizza-loading.989b4d97e5e5e36eddbd43d4bc8248e0.svg",
     "index.html": "/react-pizza-k/index.html",
     "main.1d9008ae.css.map": "/react-pizza-k/static/css/main.1d9008ae.css.map",
-    "main.ca4e370f.js.map": "/react-pizza-k/static/js/main.ca4e370f.js.map"
+    "main.19be6670.js.map": "/react-pizza-k/static/js/main.19be6670.js.map"
   },
   "entrypoints": [
     "static/css/main.1d9008ae.css",
-    "static/js/main.ca4e370f.js"
+    "static/js/main.19be6670.js"
   ]
 }
