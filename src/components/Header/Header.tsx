@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from '@mui/material';
 
 import Search from '../Search/SearchC';
 import HeaderStack from './HeaderStack';
@@ -14,7 +14,7 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const headerSearchMobile = useMediaQuery({ query: '(max-width: 576px)' });
+  const headerSearchMobile = useMediaQuery('(max-width: 576px)');
 
   const changeBackground = () => (window.scrollY >= 30 ? setNavbar(true) : setNavbar(false));
   React.useEffect(() => window.addEventListener('scroll', changeBackground), []);

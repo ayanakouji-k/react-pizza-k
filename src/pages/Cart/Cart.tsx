@@ -1,8 +1,7 @@
 import React from 'react';
-import { useMediaQuery } from 'react-responsive';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Stack, IconButton, Button } from '@mui/material';
+import { Stack, IconButton, Button, useMediaQuery } from '@mui/material';
 import {
   AddCircle,
   RemoveCircle,
@@ -12,12 +11,11 @@ import {
   DeleteSweepOutlined,
   ChevronLeft,
 } from '@mui/icons-material';
+import LazyLoad from 'react-lazyload';
 
 import { CartEmpty } from '../../components';
 import { selectCart } from '../../store/cart/selectors';
 import { useAppDispatch } from '../../store';
-
-import './cart.scss';
 import {
   clearCartPizza,
   addCartPizza,
@@ -25,12 +23,15 @@ import {
   removeCartPizza,
 } from '../../store/cart/slice';
 
+import pizzaLoading from '../../assets/img/pizza-loading.svg';
+import './cart.scss';
+
 const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
   const { cartPizzas, totalCount, totalPrice } = useSelector(selectCart);
   const navigate = useNavigate();
 
-  const cartMobileShow = useMediaQuery({ query: '(max-width: 680px)' });
+  const cartMobileShow = useMediaQuery('(max-width: 680px)');
 
   const onClearCart = () => {
     if (window.confirm('Вы дейтвительно хотите очистить корзину!')) {
@@ -57,7 +58,9 @@ const Cart: React.FC = () => {
                   <li key={item.uniqueId} className="cart__item d-flex flex-column">
                     <div className="d-flex align-center justify-between">
                       <div className="d-flex align-center">
-                        <img className="mr-15" src={item.img} alt={item.name} />
+                        <LazyLoad height={100}>
+                          <img className="mr-15" src={item.img} alt={item.name} />
+                        </LazyLoad>
                         <div className="cart__info">
                           <h3 className="mb-5">{item.name}</h3>
                           <p className="opacity-5">
