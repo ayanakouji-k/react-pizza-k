@@ -8,7 +8,7 @@ import { selectFavorite } from '../../store/favorite/selectors';
 import { clearFavorite } from '../../store/favorite/slice';
 import { useAppDispatch } from '../../store';
 
-import { CartEmpty } from '../../components';
+import { CartEmpty, DialogComponent } from '../../components';
 import PizzaItem from '../../components/Pizza/PizzaItem';
 
 import './favorite.scss';
@@ -17,16 +17,26 @@ const Favorite: React.FC = () => {
   const { items } = useSelector(selectFavorite);
   const navigate = useNavigate();
 
+  const [dialogShow, setDialogShow] = React.useState(false);
+
   const dispatch = useAppDispatch();
   const onClearFavorite = () => {
-    if (window.confirm('Вы хотите очистить закладку!')) {
-      dispatch(clearFavorite());
-    }
+    dispatch(clearFavorite());
+  };
+  const onCloseFavorite = () => {
+    setDialogShow(false);
   };
   return (
-    <div>
+    <>
       {items.length > 0 ? (
         <div className="favorite">
+          <DialogComponent
+            dialogShow={dialogShow}
+            dialogTitle="Закладка"
+            dialogContent="Вы действительно хотите очистить закладку?"
+            onClear={onClearFavorite}
+            onCloseDialog={onCloseFavorite}
+          />
           <div className="d-flex align-center justify-between">
             <div className="d-flex align-center">
               <h1 className="d-flex align-center mr-15">
@@ -40,7 +50,10 @@ const Favorite: React.FC = () => {
                 <ArrowBack className="favorite__btn-ico" />
               </Button>
             </div>
-            <Button onClick={onClearFavorite} color="warning" startIcon={<DeleteSweepOutlined />}>
+            <Button
+              onClick={() => setDialogShow(true)}
+              color="warning"
+              startIcon={<DeleteSweepOutlined />}>
               Очистить закладку
             </Button>
           </div>
@@ -53,7 +66,7 @@ const Favorite: React.FC = () => {
       ) : (
         <CartEmpty title="Закладка пустая" keyTitleOne="добавляли" keyTitleTwo="добавлять" />
       )}
-    </div>
+    </>
   );
 };
 
