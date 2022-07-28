@@ -29,6 +29,9 @@ const modalSlice = createSlice({
   reducers: {
     getModalId(state, { payload }: PayloadAction<string>) {
       state.modalId = payload;
+      if (!payload) {
+        state.modalPizzas = null;
+      }
     },
     setModalShow(state, { payload }: PayloadAction<boolean>) {
       state.modalShow = payload;
@@ -37,6 +40,7 @@ const modalSlice = createSlice({
   extraReducers(builder) {
     builder.addCase(getPizzaModalThunk.pending, (state) => {
       state.modalStatus = Status.LOADING;
+      state.modalPizzas = null;
     });
     builder.addCase(getPizzaModalThunk.fulfilled, (state, { payload }) => {
       state.modalPizzas = payload;
@@ -44,6 +48,7 @@ const modalSlice = createSlice({
     });
     builder.addCase(getPizzaModalThunk.rejected, (state) => {
       state.modalStatus = Status.ERROR;
+      state.modalPizzas = null;
     });
   },
 });

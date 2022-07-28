@@ -26,6 +26,7 @@ const Cart: React.FC = () => {
 
   const onClearCart = () => {
     dispatch(clearCartPizza());
+    setDialogShow(false);
   };
   const onCloseDialog = () => {
     setDialogShow(false);

@@ -22,6 +22,7 @@ const Favorite: React.FC = () => {
   const dispatch = useAppDispatch();
   const onClearFavorite = () => {
     dispatch(clearFavorite());
+    setDialogShow(false)
   };
   const onCloseFavorite = () => {
     setDialogShow(false);
