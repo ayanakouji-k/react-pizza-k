@@ -40,15 +40,13 @@ const Cart: React.FC = () => {
             </Button>
           </div>
           <ul className="cart__items mb-30 flex">
-            {cartPizzas.map((item) => (
-              <div>
-                {cartMobileShow ? (
-                  <CartMobile key={item.uniqueId} {...item} />
-                ) : (
-                  <CartDesktop key={item.uniqueId} {...item} />
-                )}
-              </div>
-            ))}
+            {cartPizzas.map((item) =>
+              cartMobileShow ? (
+                <CartMobile key={item.uniqueId} {...item} />
+              ) : (
+                <CartDesktop key={item.uniqueId} {...item} />
+              ),
+            )}
           </ul>
           <div className="d-flex align-center justify-between mb-15">
             <p className="cart__full">

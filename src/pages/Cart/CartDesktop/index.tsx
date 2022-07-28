@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconButton, Stack } from '@mui/material';
 import { HighlightOff, CurrencyRuble, RemoveCircle, AddCircle } from '@mui/icons-material';
-import LazyLoad from 'react-lazyload';
+import { CSSTransition } from 'react-transition-group';
 
 import { removeCartPizza, minusCartPizza, addCartPizza } from '../../../store/cart/slice';
 import { TCartObj } from '../../../store/cart/types';

@@ -1,13 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Modal, Backdrop } from '@mui/material';
+import { Modal, Backdrop, Fade } from '@mui/material';
 
 import { useAppDispatch } from '../../../store';
 import { selectModal } from '../../../store/modal/selectors';
 import { getModalId, getPizzaModalThunk, setModalShow } from '../../../store/modal/slice';
 
-import './pizza-modal.scss';
 import PizzaModalFade from './PizzaModalFade';
+
+import './pizza-modal.scss';
 
 const PizzaModal: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -36,7 +37,11 @@ const PizzaModal: React.FC = () => {
         BackdropProps={{
           timeout: 500,
         }}>
-        <PizzaModalFade handleClose={handleClose} />
+        <Fade in={modalShow}>
+          <div className="pizza-modal__fade">
+            <PizzaModalFade handleClose={handleClose} />
+          </div>
+        </Fade>
       </Modal>
     </div>
   );
